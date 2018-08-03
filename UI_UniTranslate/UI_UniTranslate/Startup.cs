@@ -36,7 +36,9 @@ namespace UI_UniTranslate
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
             app.UseRequestLocalization();
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
