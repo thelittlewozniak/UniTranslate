@@ -17,10 +17,10 @@ namespace APIUniTranslate.Controllers
     public class DetectController : Controller
     {
         [HttpGet]
-        public string Detect(string q)
+        public Detect Detect(string q)
         {
             IGetAll detectGoogle = new GetAll();
-            string data="";
+            Detect data= new Detect();
             double temp = 0;
             DetectGoogle detect = detectGoogle.Detect(q);
             for(int i=0;i<detect.data.detections.Count;i++)
@@ -30,7 +30,7 @@ namespace APIUniTranslate.Controllers
                     if (temp < detect.data.detections[i][j].confidence)
                     {
                         temp = detect.data.detections[i][j].confidence;
-                        data = detect.data.detections[i][j].language;
+                        data.language = detect.data.detections[i][j].language;
                     }
                 }
             }
