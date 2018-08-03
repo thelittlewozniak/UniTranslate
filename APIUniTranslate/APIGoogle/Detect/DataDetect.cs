@@ -8,6 +8,6 @@ namespace TranslateGoogle
 {
     public class DataDetect
     {
-        public List<detection> detections { get; set; }
+        public List<List<detection>> detections { get; set; }
     }
 }
