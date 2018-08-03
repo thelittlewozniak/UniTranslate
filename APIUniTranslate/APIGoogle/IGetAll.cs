@@ -8,6 +8,6 @@ namespace APIUniTranslate.Google
 {
     public interface IGetAll
     {
-        List<DetectGoogle> Detect(string q);
+        DetectGoogle Detect(string q);
     }
 }
