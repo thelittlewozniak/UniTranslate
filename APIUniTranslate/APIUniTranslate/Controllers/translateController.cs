@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace APIUniTranslate.Controllers
 {
     [Produces("application/json")]
-    [Route("api/translate")]
-    public class translateController : Controller
+    [Route("/Translate")]
+    public class TranslateController : Controller
     {
     }
 }
