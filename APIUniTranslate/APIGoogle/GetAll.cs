@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using APIGoogle.Translate;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,12 @@ namespace APIUniTranslate.Google
             var data = JsonConvert.DeserializeObject<DetectGoogle>(json);
             return data;
         }
-
+        public DataTranslate Translate(string q,string target)
+        {
+            var url = "https://translation.googleapis.com/language/translate/v2/detect?key=" + key + "&q=" + q;
+            var json = new WebClient().DownloadString(url);
+            var data = JsonConvert.DeserializeObject<DataTranslate>(json);
+            return data;
+        }
     }
 }
