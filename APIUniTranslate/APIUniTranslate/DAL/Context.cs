@@ -8,16 +8,15 @@ using System.Text;
 
 namespace InterpreterSearch.DAL
 {
-    public class Context : DbContext
+    public class Context:DbContext
     {
         public static Context instance;
         public DbSet<Interpreter> Interpreter { get; set; }
         public DbSet<QuestionAnswer> QuestionAnswer { get; set; }
         public DbSet<Keyword> Keyword { get; set; }
-        public DbSet<QuestionAnswer_has_Keyword> QuestionAnswer_has_Keyword { get; set; }
         public static Context Instance()
         {
-            if (instance == null)
+            if(instance==null)
             {
                 instance = new Context();
             }

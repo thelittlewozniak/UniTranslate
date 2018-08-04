@@ -1,20 +1,61 @@
 ﻿$(document).ready(function () {
-    
+    $('.mytext').attr('placeholder', phGlobal);
+
     //Detection of the ENTER keypress
     $(".mytext").on("keypress", function (e) {
         if (e.which == 13) {
             var text = $(this).val();
             if (text !== "") {
                 insertChat("me", text);
+                var txtval = $(this).val();
+                detect(txtval);
+                chat(txtval);
                 $(this).val('');
             }
         }
     });
+
+
 });
 
 var me = {};
 
 var you = {};
+
+function detect(val) {
+    $.ajax({
+        type: 'GET',
+        url: 'DetectAsync',
+        data: { text: val, lg: culture },
+        cache: false,
+        success: function (result) {
+            if (result != null) {
+                $('.mytext').val('');
+                $('.mytext').attr('placeholder', result.text);
+                culture = result.language;
+            } else {
+                console.log("ph is null !");
+            }
+        }
+    });
+}
+
+function chat(val) {
+    console.log(culture);
+    $.ajax({
+        type: 'GET',
+        url: 'ChatAsync',
+        data: { text: val, lang: culture },
+        cache: false,
+        success: function (result) {
+            if (result != null && result != '') {
+                insertChat("you", result);
+            } else {
+                console.log("Answer is null !");
+            }
+        }
+    });
+}
 
 function formatAMPM(date) {
     var hours = date.getHours();
