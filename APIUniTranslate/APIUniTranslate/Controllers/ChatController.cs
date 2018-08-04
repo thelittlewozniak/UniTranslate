@@ -31,7 +31,9 @@ namespace APIUniTranslate.Controllers
             //response = Data de la DB
             if(response.CompareTo("")==0)
             {
-                Console.WriteLine(e.Message);
+                IGetInterpreter interpreter = new DALInterpreters();
+                var e = interpreter.GetInterpreters();
+                response = trad.Translate("Sorry there's no response for your question, you can contact this interpreter:" + interpreter.GetInterpreter(lg).Email, lg).data.translations[0].translatedText;
             }
             return response;
         }
