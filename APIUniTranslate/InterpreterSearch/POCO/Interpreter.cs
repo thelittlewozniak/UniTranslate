@@ -14,6 +14,6 @@ namespace InterpreterSearch.POCO
         public string Ethnic { get; set; }
         public string Clan { get; set; }
         public string Kind { get; set; }
-        public string language { get; set; }
+        public string Language { get; set; }
     }
 }

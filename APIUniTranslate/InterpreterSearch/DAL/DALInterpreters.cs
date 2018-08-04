@@ -11,21 +11,21 @@ namespace InterpreterSearch.DAL
         Context db = new Context();
         public IEnumerable<Interpreter> GetInterpreters()
         {
-            return db.Interpreters;
+            return db.Interpreter;
         }
         public Interpreter GetInterpreter(string language)
         {
-            var interpreter = db.Interpreters.Where(i => i.language == language).FirstOrDefault();
+            var interpreter = db.Interpreter.Where(i=>i.Language==language).FirstOrDefault();
             return interpreter;
         }
         public Interpreter GetInterpreter(string language,string kind)
         {
-            var interpreter = db.Interpreters.Where(i => i.language == language && i.Kind==kind).FirstOrDefault();
+            var interpreter = db.Interpreter.Where(i => i.Language == language && i.Kind==kind).FirstOrDefault();
             return interpreter;
         }
         public Interpreter GetInterpreter(string language, string kind, string clan)
         {
-            var interpreter = db.Interpreters.Where(i => i.language == language && i.Kind==kind && i.Clan==clan).FirstOrDefault();
+            var interpreter = db.Interpreter.Where(i => i.Language == language && i.Kind==kind && i.Clan==clan).FirstOrDefault();
             return interpreter;
         }
     }
