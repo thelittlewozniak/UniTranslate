@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using TranslateGoogle;
+using APIGoogle.Detect;
 
 namespace APIUniTranslate.Google
 {
@@ -19,11 +19,11 @@ namespace APIUniTranslate.Google
             var data = JsonConvert.DeserializeObject<DetectGoogle>(json);
             return data;
         }
-        public DataTranslate Translate(string q,string target)
+        public TranslateGoogle Translate(string q, string target)
         {
-            var url = "https://translation.googleapis.com/language/translate/v2/detect?key=" + key + "&q=" + q;
+            var url = "https://translation.googleapis.com/language/translate/v2?key=" + key + "&q=" + q + "&target=" + target;
             var json = new WebClient().DownloadString(url);
-            var data = JsonConvert.DeserializeObject<DataTranslate>(json);
+            var data = JsonConvert.DeserializeObject<TranslateGoogle>(json);
             return data;
         }
     }

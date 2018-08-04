@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\APIGoogle\APIGoogle.csproj" />
+    <ProjectReference Include="..\InterpreterSearch\InterpreterSearch.csproj" />
   </ItemGroup>
 
 </Project>

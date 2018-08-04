@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using APIGoogle.Translate;
+using APIUniTranslate.Data;
+using APIUniTranslate.Google;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using APIGoogle.Detect;
 
 namespace APIUniTranslate.Controllers
 {
@@ -12,23 +16,13 @@ namespace APIUniTranslate.Controllers
     public class TranslateController : Controller
     {
         [HttpGet]
-        public Translate Detect(string q)
+        public Data.Translate Detect(string q,string target)
         {
             IGetAll detectGoogle = new GetAll();
-            Detect data = new Detect();
-            double temp = 0;
-            DetectGoogle detect = detectGoogle.Detect(q);
-            for (int i = 0; i < detect.data.detections.Count; i++)
-            {
-                for (int j = 0; j < detect.data.detections[i].Count; j++)
-                {
-                    if (temp < detect.data.detections[i][j].confidence)
-                    {
-                        temp = detect.data.detections[i][j].confidence;
-                        data.language = detect.data.detections[i][j].language;
-                    }
-                }
-            }
+            Translate data = new Translate();
+            TranslateGoogle detect = detectGoogle.Translate(q, target);
+            data.TranslatedText = detect.data.translations[0].translatedText;
+            data.TargetLanguage = target;
             return data;
         }
 
