@@ -6,3 +6,7 @@
 h1{
     font-size : 2em;
 }
+#page{
+    width : 60%;
+    margin : auto;
+}
