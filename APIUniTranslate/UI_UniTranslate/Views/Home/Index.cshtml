@@ -8,6 +8,9 @@
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
     <link href="~/css/ChatStyle.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript">
+        var culture = '@ViewBag.lg';
+    </script>
     <script src="~/js/ChatBot.js"></script>
 </head>
 <body>
@@ -22,7 +25,7 @@
                 <div>
                     <div class="msj-rta macro" style="margin:auto">
                         <div class="text text-r" style="background:whitesmoke !important">
-                            <input class="mytext" placeholder="Type a message" />
+                            <input class="mytext" placeholder="@ViewBag.Ph" />
                         </div>
                     </div>
                 </div>

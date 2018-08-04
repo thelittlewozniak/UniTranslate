@@ -17,7 +17,7 @@ namespace APIUniTranslate.Controllers
         public async Task<string> ReceiveAsync(string q, string lg)
         {
             IGetAll trad = new GetAll();
-            q = trad.Translate(q, lg).data.translations[0].translatedText;
+            q = trad.Translate(q, "en").data.translations[0].translatedText;
             //recherche dans la DB//
             string response="";
             var r =await trad.GetKeywords(q);

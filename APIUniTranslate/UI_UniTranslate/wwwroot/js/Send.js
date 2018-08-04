@@ -1,11 +1,7 @@
 ﻿$(document).ready(function () {
-    var cpt = 0;
-
     $('#submitBtn').click(function () {
-        var val = $('#textVal').val();
-        if (cpt == 0) {
-            detect(val);
-        }
+        var val = $('.mytext').val();
+        detect(val);
     });
 
     function detect(val) {
@@ -16,8 +12,8 @@
             cache: false,
             success: function (result) {
                 if (result != null) {
-                    $('#textVal').val('');
-                    $('#textVal').attr('placeholder', result);
+                    $('.mytext').val('');
+                    $('.mytext').attr('placeholder', result);
                 } else {
                     alert("ph is null !")
                 }

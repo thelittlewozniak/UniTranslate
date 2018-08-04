@@ -1,20 +1,56 @@
 ﻿$(document).ready(function () {
-    
     //Detection of the ENTER keypress
     $(".mytext").on("keypress", function (e) {
         if (e.which == 13) {
             var text = $(this).val();
             if (text !== "") {
                 insertChat("me", text);
+                var txtval = $(this).val();
+                detect(txtval);
                 $(this).val('');
             }
         }
     });
+
+
 });
 
 var me = {};
 
 var you = {};
+
+function detect(val) {
+    $.ajax({
+        type: 'GET',
+        url: 'DetectAsync',
+        data: { text: val, lg: culture },
+        cache: false,
+        success: function (result) {
+            if (result != null) {
+                $('.mytext').val('');
+                $('.mytext').attr('placeholder', result);
+            } else {
+                alert("ph is null !");
+            }
+        }
+    });
+}
+
+function chat(lg) {
+    $.ajax({
+        type: 'GET',
+        url: 'ChatAsync',
+        data: { lang: lg },
+        cache: false,
+        success: function (result) {
+            if (result != null) {
+                insertChat("you", result);
+            } else {
+                alert("Answer is null !");
+            }
+        }
+    });
+}
 
 function formatAMPM(date) {
     var hours = date.getHours();
