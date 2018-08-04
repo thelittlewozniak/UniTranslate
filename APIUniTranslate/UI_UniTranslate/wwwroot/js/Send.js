@@ -16,7 +16,7 @@
             cache: false,
             success: function (result) {
                 if (result != null) {
-                    $('#textVal').val() = "";
+                    $('#textVal').val('');
                     $('#textVal').attr('placeholder', result);
                 } else {
                     alert("ph is null !")

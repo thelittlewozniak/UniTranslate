@@ -1,12 +1,36 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-@Html.Partial("Header")
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/css/site.css" rel="stylesheet" type="text/css" />
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link href="~/css/ChatStyle.css" type="text/css" rel="stylesheet" />
+    <script src="~/js/ChatBot.js"></script>
+</head>
 <body>
-    <section>
-        <form asp-controller="Home" asp-action="Test" method="post">
-            <input type="text" />
-            <input type="submit" value="Submit" />
-        </form>
-</section>
+    <center>
+        @Html.Partial("Header")
+        <section>
+            <input type="button" value ="Reset Chat" onclick="resetChat()" />
+        </section>
+        <section id="chatBot">
+            <div class="col-12 col-md-10 col-lg-8 frame">
+                <ul></ul>
+                <div>
+                    <div class="msj-rta macro" style="margin:auto">
+                        <div class="text text-r" style="background:whitesmoke !important">
+                            <input class="mytext" placeholder="Type a message" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <input type="button" value="Simulation Chat" onclick="testChat()" />
+            </div>
+        </section>
+    </center>
 </body>
+</html>
