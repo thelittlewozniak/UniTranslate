@@ -27,7 +27,7 @@ namespace APIUniTranslate.Controllers
             {
                 for(int j=0;j<detect.data.detections[i].Count;j++)
                 {
-                    if (temp < detect.data.detections[i][j].confidence)
+                    if (temp <= detect.data.detections[i][j].confidence)
                     {
                         temp = detect.data.detections[i][j].confidence;
                         data.language = detect.data.detections[i][j].language;

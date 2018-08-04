@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
+using InterpreterSearch.DAL;
+using InterpreterSearch;
 namespace QnASearch.DAL
 {
     public class DALAnswers : IGetAnswer
     {
-        Context db = new Context();
+        Context db = Context.Instance();
 
         public async Task<string> GetAnswerAsync(string question)
         {
@@ -23,13 +24,13 @@ namespace QnASearch.DAL
                 keywords.Add(new Keyword { Text = r[i].Text, Type = r[i].Type });
             }
             List<Keyword> DBkeywords = new List<Keyword>();
-
+            var l = db.Keyword.ToList();
             // Liste complète des Keywords correspondants à tous les keywords de la question de l'utilisateur
             for(int i = 0;i<keywords.Count;i++)
                 DBkeywords.Add(db.Keyword.Where(key => key.Text.CompareTo(keywords[i].Text) == 0 && key.Type.CompareTo(keywords[i].Type) == 0).FirstOrDefault());
 
             // Tri en arbre par type de keyword
-            DBkeywords = DBkeywords.Where(key => key.Type.CompareTo("PRON") == 0).ToList();
+            DBkeywords = DBkeywords.Where(key => key.Type.CompareTo("ADV") == 0).ToList();
             DBkeywords = DBkeywords.Where(key => key.Type.CompareTo("VERB") == 0).ToList();
             DBkeywords = DBkeywords.Where(key => key.Type.CompareTo("NOUN") == 0).ToList();
 
@@ -43,13 +44,13 @@ namespace QnASearch.DAL
 
             string answer = null;
 
-            KeywordsID.ForEach(id =>
-            {
-                db.QuestionAnswer.ToList().ForEach(q =>
-                {
-                    cpt = q.KeyWord.Select(k => new AnswerByCount() { Answer = q.Answer, Count = q.KeyWord.Count(key => key.Id == id) }).ToList();
-                });
-            });
+            //KeywordsID.ForEach(id =>
+            //{
+            //    db.QuestionAnswer.ToList().ForEach(q =>
+            //    {
+            //        cpt = q.KeyWord.Select(k => new AnswerByCount() { Answer = q.Answer, Count = q.KeyWord.Count(key => key.Id == id) }).ToList();
+            //    });
+            //});
 
             return answer = cpt.Max().Answer;
         }

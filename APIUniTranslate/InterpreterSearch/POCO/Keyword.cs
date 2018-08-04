@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterpreterSearch.POCO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace QnASearch.POCO
         public int Id { get; set; }
         public string Text { get; set; }
         public string Type { get; set; }
+        public List<QuestionAnswer_has_Keyword> Answers { get; set; }
     }
 }
