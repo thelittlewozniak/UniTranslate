@@ -30,7 +30,7 @@ namespace APIUniTranslate.Google
             var data = JsonConvert.DeserializeObject<TranslateGoogle>(json);
             return data;
         }
-        public async Task<KeywordGoogle> GetKeywords(string q)
+        public async Task<List<Keyword>> GetKeywords(string q)
         {
             DictionnaryData data = new DictionnaryData("UTF8", q);
             JsonSerializer serializer = new JsonSerializer();
@@ -38,7 +38,12 @@ namespace APIUniTranslate.Google
             var response = await client.PostAsync("https://language.googleapis.com/v1/documents:analyzeSyntax?key=AIzaSyBy_fZcr1Pgy74vdHCWJwhrwZpW8LoDp08", new StringContent(json, Encoding.UTF8, "application/json"));
             var responseString = await response.Content.ReadAsStringAsync();
             var d = JsonConvert.DeserializeObject<KeywordGoogle>(responseString);
-            return d;
+            var keywords = new List<Keyword>();
+            for(int i=0;i<d.tokens.Count;i++)
+            {
+                keywords.Add(new Keyword { Text = d.tokens[i].text.content,Type = d.tokens[i].partOfSpeech.tag });
+            }
+            return keywords;
         }
     }
 }
