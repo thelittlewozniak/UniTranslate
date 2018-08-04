@@ -10,18 +10,9 @@ namespace UI_UniTranslate.Controllers
 {
     public class HomeController : Controller
     {
-        //public IActionResult Index()
-        //{
-        //    var requestCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>();
-        //    //return requestCulture.RequestCulture.Culture.ToString();
-        //    return View();
-        //}
-
-        public string Index()
+        public IActionResult Index()
         {
-            var requestCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>();
-            return requestCulture.RequestCulture.Culture.ToString();
-            //return View();
+            return View();
         }
     }
 }
