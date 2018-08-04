@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    $('.mytext').attr('placeholder', phGlobal);
+
     //Detection of the ENTER keypress
     $(".mytext").on("keypress", function (e) {
         if (e.which == 13) {
@@ -7,6 +9,7 @@
                 insertChat("me", text);
                 var txtval = $(this).val();
                 detect(txtval);
+                chat(txtval);
                 $(this).val('');
             }
         }
@@ -28,25 +31,27 @@ function detect(val) {
         success: function (result) {
             if (result != null) {
                 $('.mytext').val('');
-                $('.mytext').attr('placeholder', result);
+                $('.mytext').attr('placeholder', result.text);
+                culture = result.language;
             } else {
-                alert("ph is null !");
+                console.log("ph is null !");
             }
         }
     });
 }
 
-function chat(lg) {
+function chat(val) {
+    console.log(culture);
     $.ajax({
         type: 'GET',
         url: 'ChatAsync',
-        data: { lang: lg },
+        data: { text: val, lang: culture },
         cache: false,
         success: function (result) {
-            if (result != null) {
+            if (result != null && result != '') {
                 insertChat("you", result);
             } else {
-                alert("Answer is null !");
+                console.log("Answer is null !");
             }
         }
     });

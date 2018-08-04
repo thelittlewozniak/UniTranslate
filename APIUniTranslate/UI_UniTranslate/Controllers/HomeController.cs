@@ -36,10 +36,10 @@ namespace UI_UniTranslate.Controllers
 
             return View("Index");
         }
-        public async Task<string> DetectAsync(string text, string lg)
+        public async Task<DetectedLg> DetectAsync(string text, string lg)
         {
             Detect detect = null;
-            string ph = "Say Hello in your language";
+            DetectedLg dlg = new DetectedLg();
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:64203/");
             client.DefaultRequestHeaders.Accept.Clear();
@@ -53,14 +53,16 @@ namespace UI_UniTranslate.Controllers
             }
 
             if(!detect.Language.Equals(lg))
-                ph = await TranslateAsync(ph, detect.Language);
+                dlg.Text = await TranslateAsync("Say Hello in your language", detect.Language);
 
-            return ph;
+            dlg.Language = detect.Language;
+
+            return dlg;
         }
 
         public async Task<string> ChatAsync(string text, string lang)
         {
-            string answer = null;
+            string answer = "";
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:64203/");
             client.DefaultRequestHeaders.Accept.Clear();

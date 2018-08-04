@@ -16,17 +16,26 @@ namespace APIUniTranslate.Controllers
     {
         public async Task<string> ReceiveAsync(string q, string lg)
         {
-            IGetAll trad = new GetAll();
-            q = trad.Translate(q, "en").data.translations[0].translatedText;
-            //recherche dans la DB//
-            string response="";
-            var r =await trad.GetKeywords(q);
-            //response = Data de la DB
-            if(response.CompareTo("")==0)
+            string response = "";
+            try
             {
-                IGetInterpreter interpreter = new DALInterpreters();
-                var e = interpreter.GetInterpreters();
-                response = trad.Translate("Sorry there's no response for your question, you can contact this interpreter:" + interpreter.GetInterpreter(lg).Email, lg).data.translations[0].translatedText;
+                IGetAll trad = new GetAll();
+                q = trad.Translate(q, "en").data.translations[0].translatedText;
+                //recherche dans la DB//
+                
+                var r = await trad.GetKeywords(q);
+                //response = Data de la DB
+                //if (response.CompareTo("") == 0)
+                //{
+                //    IGetInterpreter interpreter = new DALInterpreters();
+                //    var e = interpreter.GetInterpreters();
+                //    response = trad.Translate("Sorry there's no response for your question, you can contact this interpreter:" + interpreter.GetInterpreter(lg).Email, lg).data.translations[0].translatedText;
+                //}
+                response = q;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
             return response;
         }
