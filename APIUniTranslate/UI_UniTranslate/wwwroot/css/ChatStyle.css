@@ -1,11 +1,11 @@
 ﻿.mytext {
     border: 0;
-    padding: 10px;
+    padding: 0.75rem;
     background: whitesmoke;
 }
 
 .text {
-    width: 75%;
+    /*width: 75%;*/
     display: flex;
     flex-direction: column;
 }
@@ -20,18 +20,24 @@
 
     .text > p:last-of-type {
         width: 100%;
-        text-align: right;
         color: silver;
         margin-bottom: -7px;
         margin-top: auto;
     }
 
+
 .text-l {
+    display : block;
+    width : 100%;
+    text-align : left;
     float: left;
     padding-right: 10px;
 }
 
 .text-r {
+    display: block;
+    width: 100%;
+    text-align: right;
     float: right;
     padding-left: 10px;
 }
@@ -46,10 +52,11 @@
 }
 
 .macro {
-    margin-top: 5px;
-    width: 85%;
-    border-radius: 5px;
-    padding: 5px;
+    margin-top: 0.25rem;
+    min-width : 15%;
+    /*width: 85%;*/
+    border-radius: 0.25rem;
+    padding: 0.25rem;
     display: flex;
 }
 
@@ -65,14 +72,15 @@
 
 .frame {
     background: #e0e0de;
-    height: 450px;
-    overflow: hidden;
+    height: 30rem;
+    width: 100rem;
+    overflow-y: auto;
     padding: 0;
 }
 
     .frame > div:last-of-type {
         position: absolute;
-        bottom: 5px;
+        bottom: 0.25rem;
         width: 100%;
         display: flex;
     }
@@ -80,9 +88,9 @@
 ul {
     width: 100%;
     list-style-type: none;
-    padding: 18px;
+    padding: 1rem;
     position: absolute;
-    bottom: 32px;
+    bottom: 2rem;
     display: flex;
     flex-direction: column;
 }
@@ -91,11 +99,11 @@ ul {
     width: 0;
     height: 0;
     content: "";
-    top: -5px;
-    left: -14px;
+    top: -0.25rem;
+    left: -0.75rem;
     position: relative;
     border-style: solid;
-    border-width: 0 13px 13px 0;
+    border-width: 0 1rem 1rem 0;
     border-color: transparent #ffffff transparent transparent;
 }
 
@@ -103,11 +111,11 @@ ul {
     width: 0;
     height: 0;
     content: "";
-    top: -5px;
-    left: 14px;
+    top: -0.25rem;
+    left: 1rem;
     position: relative;
     border-style: solid;
-    border-width: 13px 13px 0 0;
+    border-width: 0.75rem 0.75rem 0 0;
     border-color: whitesmoke transparent transparent transparent;
 }
 
