@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\APIGoogle\APIGoogle.csproj" />
     <ProjectReference Include="..\InterpreterSearch\InterpreterSearch.csproj" />
+    <ProjectReference Include="..\QandASearch\QandASearch.csproj" />
   </ItemGroup>
 
 </Project>
