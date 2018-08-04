@@ -7,7 +7,7 @@ namespace QnASearch
 {
     public interface IGetAnswer
     {
-        QuestionAnswer GetAnswer(string question);
+        string GetAnswer(string question);
         List<Keyword> GetKeywords(string question);
     }
 }
