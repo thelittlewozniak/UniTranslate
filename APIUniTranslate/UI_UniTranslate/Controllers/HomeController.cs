@@ -14,8 +14,6 @@ namespace UI_UniTranslate.Controllers
 {
     public class HomeController : Controller
     {
-        private HttpClient client = new HttpClient();
-
         public IActionResult Index()
         {
             var requestCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>();
@@ -24,20 +22,25 @@ namespace UI_UniTranslate.Controllers
             int hyphenIndex = cultureFull.IndexOf('-');
             string culture = cultureFull.Substring(0, hyphenIndex);
 
-            // Return translated values
-
-            return RedirectToAction("Test", new { lg = culture });
+            return RedirectToAction("TestAsync", new { lg = culture });
         }
 
-        public IActionResult Test(string lg)
+        public async Task<IActionResult> TestAsync(string lg)
         {
-            return View();
+            string ph = "Say Hello in your language";
+
+            ph = await TranslateAsync(ph, lg);
+
+            ViewBag.Ph = ph;
+
+            return View("Test");
         }
 
         public async Task<string> DetectAsync(string text)
         {
             Detect detect = null;
             string ph = "Say Hello in your language";
+            HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:64203/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
@@ -49,22 +52,27 @@ namespace UI_UniTranslate.Controllers
                 detect = await response.Content.ReadAsAsync<Detect>();
             }
 
-            ph = await ChatAsync(ph, detect.Language);
+            ph = await TranslateAsync(ph, detect.Language);
 
             return ph;
         }
 
-        public async Task<string>ChatAsync(string text, string lang)
+        public async Task<string> TranslateAsync(string text, string lang)
         {
-            string answer = null;
+            Translate answer = null;
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:64203/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
 
-            HttpResponseMessage response = await client.GetAsync("api/Chat?q=" + text + "&lg=" + lang);
+            HttpResponseMessage response = await client.GetAsync("Translate?q=" + text + "&target=" + lang);
             if (response.IsSuccessStatusCode)
             {
-                answer = await response.Content.ReadAsAsync<string>();
+                answer = await response.Content.ReadAsAsync<Translate>();
             }
 
-            return answer;
+            return answer.TranslatedText;
         }
     }
 }
