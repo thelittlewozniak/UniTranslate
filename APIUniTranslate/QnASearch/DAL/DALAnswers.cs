@@ -13,7 +13,8 @@ namespace QnASearch.DAL
 
         public List<Keyword> GetKeywords(string question)
         {
-            /* appel api */
+            
+        
             return new List<Keyword>();
         }
 
