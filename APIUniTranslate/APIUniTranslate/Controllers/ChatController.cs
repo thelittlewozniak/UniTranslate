@@ -21,7 +21,7 @@ namespace APIUniTranslate.Controllers
             //recherche dans la DB//
             string response="";
             //response = Data de la DB
-            if(response!="")
+            if(response=="")
             {
                 IGetInterpreter interpreter = new DALInterpreters();
                 response = trad.Translate("Sorry there's no response for your question, you can contact this interpreter:" + interpreter.GetInterpreter(lg).Email, lg).data.translations[0].translatedText;

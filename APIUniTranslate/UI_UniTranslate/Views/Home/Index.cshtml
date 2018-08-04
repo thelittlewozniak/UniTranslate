@@ -4,7 +4,9 @@
 @Html.Partial("Header")
 <body>
     <section>
-        <input type="text" />
-        <input type="submit" value="Submit"/>
-    </section>
+        <form asp-controller="Home" asp-action="Test" method="post">
+            <input type="text" />
+            <input type="submit" value="Submit" />
+        </form>
+</section>
 </body>
