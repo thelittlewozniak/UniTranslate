@@ -12,6 +12,6 @@ namespace APIUniTranslate.Google
     {
         DetectGoogle Detect(string q);
         TranslateGoogle Translate(string q, string target);
-        Task<KeywordGoogle> GetKeywords(string q);
+        Task<List<Keyword>> GetKeywords(string q);
     }
 }
