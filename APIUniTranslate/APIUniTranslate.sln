@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGoogle", "APIGoogle\APIG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI_UniTranslate", "UI_UniTranslate\UI_UniTranslate.csproj", "{AD5A8439-CDE2-4736-970C-261CA3DE9145}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterpreterSearch", "InterpreterSearch\InterpreterSearch.csproj", "{058D767A-5989-46B1-A72D-9582A9387E62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InterpreterSearch", "InterpreterSearch\InterpreterSearch.csproj", "{058D767A-5989-46B1-A72D-9582A9387E62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QnASearch", "QnASearch\QnASearch.csproj", "{BFF06E74-7E94-4674-A13A-D6F37F0858FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,22 @@ Global
 		{058D767A-5989-46B1-A72D-9582A9387E62}.Release|x64.Build.0 = Release|Any CPU
 		{058D767A-5989-46B1-A72D-9582A9387E62}.Release|x86.ActiveCfg = Release|Any CPU
 		{058D767A-5989-46B1-A72D-9582A9387E62}.Release|x86.Build.0 = Release|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Debug|ARM.Build.0 = Debug|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Debug|x64.Build.0 = Debug|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Debug|x86.Build.0 = Debug|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Release|ARM.ActiveCfg = Release|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Release|ARM.Build.0 = Release|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Release|x64.ActiveCfg = Release|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Release|x64.Build.0 = Release|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Release|x86.ActiveCfg = Release|Any CPU
+		{BFF06E74-7E94-4674-A13A-D6F37F0858FF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
