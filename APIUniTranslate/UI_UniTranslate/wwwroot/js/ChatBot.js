@@ -30,8 +30,10 @@ function detect(val) {
         cache: false,
         success: function (result) {
             if (result != null) {
-                $('.mytext').val('');
-                $('.mytext').attr('placeholder', result.text);
+                if (result.text != "") {
+                    $('.mytext').val('');
+                    $('.mytext').attr('placeholder', result.text);
+                }
                 culture = result.language;
             } else {
                 console.log("ph is null !");
