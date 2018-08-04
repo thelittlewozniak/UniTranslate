@@ -7,6 +7,8 @@ using InterpreterSearch;
 using InterpreterSearch.DAL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using QnASearch;
+using QnASearch.DAL;
 
 namespace APIUniTranslate.Controllers
 {
@@ -17,7 +19,12 @@ namespace APIUniTranslate.Controllers
         public async Task<string> ReceiveAsync(string q, string lg)
         {
             IGetAll trad = new GetAll();
+            IGetAnswer answ = new DALAnswers();
+            
             q = trad.Translate(q, "en").data.translations[0].translatedText;
+
+            string rep = await answ.GetAnswerAsync(q);
+
             //recherche dans la DB//
             string response="";
             var r =await trad.GetKeywords(q);
