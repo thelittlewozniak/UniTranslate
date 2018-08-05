@@ -32,6 +32,7 @@ namespace APIUniTranslate.Google
         }
         public async Task<List<Keyword>> GetKeywords(string q)
         {
+            q = q.Replace("'", "\\'");
             DictionnaryData data = new DictionnaryData("UTF8", q);
             JsonSerializer serializer = new JsonSerializer();
             string json = JsonIzer.Jsonizer(data);

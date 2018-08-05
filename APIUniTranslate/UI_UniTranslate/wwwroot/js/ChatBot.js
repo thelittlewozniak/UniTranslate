@@ -5,11 +5,11 @@
     $(".mytext").on("keypress", function (e) {
         if (e.which == 13) {
             var text = $(this).val();
-            if (text !== "") {
+            if (text != "") {
                 insertChat("me", text);
+                insertChat("wait", "");
                 var txtval = $(this).val();
                 detect(txtval);
-                chat(txtval);
                 $(this).val('');
             }
         }
@@ -30,11 +30,12 @@ function detect(val) {
         cache: false,
         success: function (result) {
             if (result != null) {
-                if (result.text != "") {
+                if (result.text != "" && result.text != null) {
                     $('.mytext').val('');
                     $('.mytext').attr('placeholder', result.text);
                 }
                 culture = result.language;
+                chat(val);
             } else {
                 console.log("ph is null !");
             }
@@ -87,7 +88,17 @@ function insertChat(who, text, time = 0) {
             '</div>' +
             '</div>' +
             '</li>';
-    } else {
+    }
+    else if(who == "wait") {
+        control = '<li class="wait" style="width:35%;">' +
+            '<div class="msj macro">' +
+            '<div class="text text-l">' +
+            '<p class="load"><img src="../images/Plain_Disc.svg" class="dot" /><img src="../images/Plain_Disc.svg" class="dot" /><img src="../images/Plain_Disc.svg" class="dot" /></p>' +
+            '<p class=".text-small-l"><small>' + date + '</small></p>' +
+            '</div>' +
+            '</li>';
+    }
+    else {
         control = '<li style="width:100%;">' +
             '<div class="msj macro">' +
             '<div class="text text-l">' +
@@ -98,7 +109,16 @@ function insertChat(who, text, time = 0) {
     }
     setTimeout(
         function () {
-            $("ul").append(control);
+            if (who == "you") {
+                $('ul').find('.wait').animate({ width: '100%' }, 500, function () {
+                    $('ul').find('.wait').find('.load').children().remove();
+                    $('ul').find('.wait').find('.load').text(text);
+                    $('ul').find('.wait').attr('class', null);
+                });
+            }
+            else {
+                $("ul").append(control);
+            }
 
         }, time);
 
@@ -110,6 +130,7 @@ function testChat() {
     resetChat();
 
     //-- Print Messages
+    insertChat("wait", "");
     insertChat("me", "Hello Tom...", 0);
     insertChat("you", "Hi, Pablo", 500);
     insertChat("me", "What would you like to talk about today?", 1000);

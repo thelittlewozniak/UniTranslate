@@ -35,6 +35,7 @@ namespace QnASearch.DAL
             List<Keyword> ADV = new List<Keyword>();
             List<Keyword> VERB = new List<Keyword>();
             List<Keyword> NOUN = new List<Keyword>();
+            List<Keyword> X = new List<Keyword>();
             List<Keyword> keyword = new List<Keyword>();
             List<QuestionAnswer> f = new List<QuestionAnswer>();
             foreach (Keyword i in DBkeywords)
@@ -51,6 +52,10 @@ namespace QnASearch.DAL
                 {
                     NOUN.Add(i);
                 }
+                if (i?.Type == "X")
+                {
+                    X.Add(i);
+                }
             }
             foreach (Keyword adv in ADV)
             {
@@ -64,7 +69,11 @@ namespace QnASearch.DAL
             {
                 keyword.Add(noun);
             }
-            bool pass1 =false, pass2=false, pass3 = false;
+            foreach (Keyword x in X)
+            {
+                keyword.Add(x);
+            }
+            bool pass1 =false, pass2=false, pass3 = false, pass4 = false;
             foreach (Keyword e in keyword)
             {
                 switch (e.Type)
@@ -90,7 +99,7 @@ namespace QnASearch.DAL
                         }
                         if (pass2 == false)
                         {
-                            f = GetGoodAnswers(f, e);
+                            f = GetAnswers(e);
                             DBkeywords.Remove(e);
                             pass2 = true;
                         }
@@ -104,9 +113,23 @@ namespace QnASearch.DAL
                         }
                         if (pass3 == false)
                         {
-                            f = GetGoodAnswers(f, e);
+                            f = GetAnswers(e);
                             DBkeywords.Remove(e);
                             pass3 = true;
+                        }
+                        break;
+                    case "X":
+                        if (pass4)
+                        {
+                            f = GetGoodAnswers(f, e);
+                            DBkeywords.Remove(e);
+                            pass4 = true;
+                        }
+                        if (pass4 == false)
+                        {
+                            f = GetAnswers(e);
+                            DBkeywords.Remove(e);
+                            pass4 = true;
                         }
                         break;
                 }

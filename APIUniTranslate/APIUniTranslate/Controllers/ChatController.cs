@@ -35,7 +35,7 @@ namespace APIUniTranslate.Controllers
                 {
                     IGetInterpreter interpreter = new DALInterpreters();
                     var e = interpreter.GetInterpreters();
-                    rep = trad.Translate("Sorry there's no response for your question, you can contact this interpreter:" + interpreter.GetInterpreter(lg).Email, lg).data.translations[0].translatedText;
+                    rep = trad.Translate("Sorry there's no response for your question, you can contact this interpreter:" + interpreter.GetInterpreter(lg)?.Email, lg).data.translations[0].translatedText;
                 }
                 else
                 {

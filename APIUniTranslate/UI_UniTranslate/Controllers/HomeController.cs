@@ -40,22 +40,29 @@ namespace UI_UniTranslate.Controllers
         {
             Detect detect = null;
             DetectedLg dlg = new DetectedLg();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://localhost:64203/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-
-            HttpResponseMessage response = await client.GetAsync("Detect?q=" + text);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                detect = await response.Content.ReadAsAsync<Detect>();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("http://localhost:64203/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json"));
+
+                HttpResponseMessage response = await client.GetAsync("Detect?q=" + text);
+                if (response.IsSuccessStatusCode)
+                {
+                    detect = await response.Content.ReadAsAsync<Detect>();
+                }
+
+                if (!detect.Language.Equals(lg))
+                    dlg.Text = await TranslateAsync("Say Hello in your language", detect.Language);
+
+                dlg.Language = detect.Language;
             }
-
-            if(!detect.Language.Equals(lg))
-                dlg.Text = await TranslateAsync("Say Hello in your language", detect.Language);
-
-            dlg.Language = detect.Language;
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             return dlg;
         }
