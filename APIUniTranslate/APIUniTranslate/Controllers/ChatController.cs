@@ -26,8 +26,7 @@ namespace APIUniTranslate.Controllers
             string rep = await answ.GetAnswerAsync(q);
             
             //recherche dans la DB//
-            string response="";
-            var r =await trad.GetKeywords(q);
+
             //response = Data de la DB
             if(rep.CompareTo("")==0)
             {
