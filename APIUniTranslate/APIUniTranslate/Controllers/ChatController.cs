@@ -18,25 +18,33 @@ namespace APIUniTranslate.Controllers
     {
         public async Task<string> ReceiveAsync(string q, string lg)
         {
-            IGetAll trad = new GetAll();
-            IGetAnswer answ = new DALAnswers();
-
-            q = trad.Translate(q, "en").data.translations[0].translatedText;
-
-            string rep = await answ.GetAnswerAsync(q);
-            
-            //recherche dans la DB//
-
-            //response = Data de la DB
-            if(rep.CompareTo("")==0)
+            string rep = null;
+            try
             {
-                IGetInterpreter interpreter = new DALInterpreters();
-                var e = interpreter.GetInterpreters();
-                rep = trad.Translate("Sorry there's no response for your question, you can contact this interpreter:" + interpreter.GetInterpreter(lg).Email, lg).data.translations[0].translatedText;
+                IGetAll trad = new GetAll();
+                IGetAnswer answ = new DALAnswers();
+
+                q = trad.Translate(q, "en").data.translations[0].translatedText;
+
+                rep = await answ.GetAnswerAsync(q);
+
+                //recherche dans la DB//
+
+                //response = Data de la DB
+                if (rep == null || rep.CompareTo("") == 0)
+                {
+                    IGetInterpreter interpreter = new DALInterpreters();
+                    var e = interpreter.GetInterpreters();
+                    rep = trad.Translate("Sorry there's no response for your question, you can contact this interpreter:" + interpreter.GetInterpreter(lg).Email, lg).data.translations[0].translatedText;
+                }
+                else
+                {
+                    rep = trad.Translate(rep, lg).data.translations[0].translatedText;
+                }
             }
-            else
+            catch(Exception e)
             {
-                rep = trad.Translate(rep, lg).data.translations[0].translatedText;
+                Console.WriteLine(e.Message);
             }
             return rep;
         }

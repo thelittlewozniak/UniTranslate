@@ -39,15 +39,15 @@ namespace QnASearch.DAL
             List<QuestionAnswer> f = new List<QuestionAnswer>();
             foreach (Keyword i in DBkeywords)
             {
-                if(i.Type=="ADV")
+                if(i?.Type=="ADV")
                 {
                     ADV.Add(i);
                 }
-                if(i.Type=="VERB")
+                if(i?.Type=="VERB")
                 {
                     VERB.Add(i);
                 }
-                if(i.Type=="NOUN")
+                if(i?.Type=="NOUN")
                 {
                     NOUN.Add(i);
                 }
@@ -111,7 +111,7 @@ namespace QnASearch.DAL
                         break;
                 }
             }
-            return f.FirstOrDefault().Answer;
+            return f?.FirstOrDefault()?.Answer;
         }
         public List<QuestionAnswer> GetGoodAnswers(List<QuestionAnswer> questionAnswers,Keyword e)
         {
