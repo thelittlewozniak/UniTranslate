@@ -1,9 +1,9 @@
 ﻿body {
-    font-size : 16px;
+    font-size: 16px;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+    background-image : url("../images/Orren_E_20160725_EGO3881.svg") !important;
 }
-
 
 #main{
     margin-left: 50px;
@@ -11,4 +11,16 @@
 
 #textVal{
     width: 200px;
+}
+h1{
+    font-size : 2em;
+    font-family : Bebas !important;
+}
+@font-face{
+    font-family : "Bebas";
+    src:url("../font/BebasNeue-Regular.ttf");
+}
+#page {
+    width: 75%;
+    margin: auto;
 }
