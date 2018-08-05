@@ -24,18 +24,20 @@ namespace APIUniTranslate.Controllers
             q = trad.Translate(q, "en").data.translations[0].translatedText;
 
             string rep = await answ.GetAnswerAsync(q);
-
+            
             //recherche dans la DB//
-            string response="";
-            var r =await trad.GetKeywords(q);
             //response = Data de la DB
-            if(response.CompareTo("")==0)
+            if(rep.CompareTo("")==0)
             {
                 IGetInterpreter interpreter = new DALInterpreters();
                 var e = interpreter.GetInterpreters();
-                response = trad.Translate("Sorry there's no response for your question, you can contact this interpreter:" + interpreter.GetInterpreter(lg).Email, lg).data.translations[0].translatedText;
+                rep = trad.Translate("Sorry there's no response for your question, you can contact this interpreter:" + interpreter.GetInterpreter(lg).Email, lg).data.translations[0].translatedText;
             }
-            return response;
+            else
+            {
+                rep = trad.Translate(rep, lg).data.translations[0].translatedText;
+            }
+            return rep;
         }
     }
 }

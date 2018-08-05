@@ -1,5 +1,5 @@
-﻿using InterpreterSearch.DAL;
-using InterpreterSearch.POCO;
+﻿using APIUniTranslate.Models;
+using InterpreterSearch.DAL;
 using System;
 using System.Collections.Generic;
 

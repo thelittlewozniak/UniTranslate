@@ -1,4 +1,4 @@
-﻿using InterpreterSearch.POCO;
+﻿using APIUniTranslate.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ namespace InterpreterSearch.DAL
 {
     public class DALInterpreters:IGetInterpreter
     {
-        Context db = Context.Instance();
+        Context db = new Context();
         public IEnumerable<Interpreter> GetInterpreters()
         {
             return db.Interpreter;
