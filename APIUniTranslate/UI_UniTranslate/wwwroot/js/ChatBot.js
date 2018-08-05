@@ -114,7 +114,6 @@ function testChat() {
     insertChat("you", "Tell me a joke", 1500);
     insertChat("me", "Spaceman: Computer! Computer! Do we bring battery?!", 2000);
     insertChat("you", "LOL", 2500);
-    insertChat("me", "MES COUILLES AU BORD DE L'EAU", 3000);
 }
 
 function resetChat() {
