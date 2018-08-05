@@ -15,26 +15,28 @@
     <script src="~/js/ChatBot.js"></script>
 </head>
 <body>
-    <center>
-        @Html.Partial("Header")
-        <section>
-            <input type="button" value ="Reset Chat" onclick="resetChat()" />
-        </section>
-        <section id="chatBot">
-            <div class="col-12 col-md-10 col-lg-8 frame">
-                <ul></ul>
-                <div>
-                    <div class="msj-rta macro" style="margin:auto">
-                        <div class="text text-r" style="background:whitesmoke !important">
-                            <input class="mytext" placeholder="" />
+    <div id="page">
+        <center>
+            @Html.Partial("Header")
+            <section>
+                <input type="button" value ="Reset Chat" onclick="resetChat()" />
+            </section>
+            <section id="chatBot">
+                <div class="col-12 col-md-10 col-lg-8 frame">
+                    <ul></ul>
+                    <div>
+                        <div class="msj-rta macro" style="margin:auto">
+                            <div class="text text-r">
+                                <input class="mytext" placeholder="" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <input type="button" value="Simulation Chat" onclick="testChat()" />
-            </div>
-        </section>
-    </center>
+                <div>
+                    <input type="button" value="Simulation Chat" onclick="testChat()" />
+                </div>
+            </section>
+        </center>
+    </div>
 </body>
 </html>

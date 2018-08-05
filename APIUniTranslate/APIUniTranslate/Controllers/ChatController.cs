@@ -29,10 +29,13 @@ namespace APIUniTranslate.Controllers
             string response="";
             var r =await trad.GetKeywords(q);
             //response = Data de la DB
-            if(response.CompareTo("")==0)
-            {
-                Console.WriteLine(e.Message);
-            }
+            //if(response.CompareTo("")==0)
+            //{
+            //    IGetInterpreter interpreter = new DALInterpreters();
+            //    var e = interpreter.GetInterpreters();
+            //    response = trad.Translate("Sorry there's no response for your question, you can contact this interpreter:" + interpreter.GetInterpreter(lg).Email, lg).data.translations[0].translatedText;
+            //}
+            response = q; //[DEBUG] for waiting
             return response;
         }
     }
